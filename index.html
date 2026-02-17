@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammad Yusuf · premium dev</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- style.css ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0d16;
+      color: #eef3fc;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* animated background gradient */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 40%, #14233c, #070b15 80%);
+      z-index: -2;
+      animation: bgPulse 12s infinite alternate ease-in-out;
+    }
+
+    @keyframes bgPulse {
+      0% { opacity: 1; }
+      100% { opacity: 0.9; background: radial-gradient(circle at 35% 45%, #1a2b4a, #070b15 85%); }
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 70%, rgba(70, 130, 255, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at 10% 30%, rgba(180, 130, 255, 0.1) 0%, transparent 40%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* glass card (enhanced) */
+    .glass-card {
+      background: rgba(20, 30, 50, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(110, 170, 255, 0.2);
+      border-radius: 28px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(120, 180, 255, 0.1) inset;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 50px -15px #1f3a8a, 0 0 30px rgba(70, 130, 255, 0.3);
+      border-color: rgba(100, 160, 255, 0.5);
+    }
+
+    /* premium button */
+    .btn-glow {
+      display: inline-block;
+      background: linear-gradient(145deg, #1f2f4a, #14213b);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      box-shadow: 0 15px 25px -10px #0e1a30, 0 0 0 1px rgba(100, 160, 255, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+    }
+
+    .btn-glow:hover {
+      background: linear-gradient(145deg, #2b3f64, #1f3150);
+      transform: scale(1.03);
+      box-shadow: 0 20px 35px -10px #1e3d9e, 0 0 30px #3f6ad0;
+      border-color: rgba(110, 170, 255, 0.6);
+    }
+
+    /* navbar (glass, sticky) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      z-index: 100;
+      background: rgba(8, 12, 22, 0.3);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(80, 140, 255, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(130deg, #ffffff, #c0d6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 18px #2f6eff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #cfdfff;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #8098ff, #caa5ff);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      text-shadow: 0 0 8px #8098ff;
+    }
+
+    /* container */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    section {
+      margin-bottom: 5rem;      /* REDUCED from 7rem to tighten spacing */
+      scroll-margin-top: 80px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* hero (two columns) */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      min-height: 42vh;          /* slightly reduced for better proportion */
+      margin-bottom: 2rem;        /* extra control */
+    }
+
+    .hero-left {
+      padding-right: 2rem;
+    }
+
+    .hero-name {
+      font-size: clamp(3.2rem, 6vw, 5.2rem);
+      font-weight: 800;
+      background: linear-gradient(145deg, #ffffff, #bdd5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 30px #3f7bff;
+    }
+
+    .hero-title {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 400;
+      color: #b0cbff;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #c3d6ff;
+      margin-bottom: 2.2rem;
+    }
+
+    .freelance-status {
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      color: #a5c0ff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .freelance-status i {
+      color: #4cd964;
+      font-size: 0.9rem;
+      filter: drop-shadow(0 0 6px #4cd964);
+    }
+
+    /* hero image with glowing frame - real photo */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-frame {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(135deg, #3f7bff, #a07eff);
+      box-shadow: 0 0 40px #3f7bff, 0 0 80px #4a2eff;
+      animation: glowRotate 6s infinite alternate;
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #1b2b46; /* fallback while loading */
+    }
+
+    @keyframes glowRotate {
+      0% { box-shadow: 0 0 30px #3f7bff, 0 0 60px #6a4eff; }
+      100% { box-shadow: 0 0 60px #9f7aff, 0 0 90px #3f7bff; }
+    }
+
+    /* about two-column */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-frame {
+      width: 280px;
+      height: 280px;
+      border-radius: 30px;
+      padding: 8px;
+      background: linear-gradient(145deg, #3f7bff, #b07cff);
+      box-shadow: 0 0 35px #4f6eff;
+    }
+
+    .about-image-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #14233f, #0b1425);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      color: rgba(150, 200, 255, 0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .about-text {
+      padding: 2rem;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: #d4e4ff;
+    }
+
+    /* skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .skill-item {
+      background: rgba(30, 45, 75, 0.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(130, 180, 255, 0.3);
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #dbe9ff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+
+    .skill-item:hover {
+      border-color: #6f9eff;
+      box-shadow: 0 0 22px #2f6eff;
+      transform: scale(1.02);
+    }
+
+    /* projects & services cards */
+    .projects-grid, .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card, .service-card {
+      padding: 2rem;
+      border-radius: 28px;
+      background: rgba(18, 30, 48, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(100, 160, 255, 0.2);
+      transition: 0.4s;
+    }
+
+    .project-card h3, .service-card h4 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: white;
+      text-shadow: 0 0 8px #6f9eff;
+    }
+
+    .service-card i {
+      font-size: 2.5rem;
+      color: #aac2ff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #3f7bff;
+    }
+
+    /* ---------- UPDATED CONTACT SECTION ---------- */
+    .section-header {
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      background: linear-gradient(130deg, #fff, #b0d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      border-bottom: 2px solid rgba(100,150,255,0.4);
+      padding-bottom: 0.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-card {
+      padding: 1.8rem 1.5rem;
+      border-radius: 28px;
+      background: rgba(18, 32, 52, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(110, 170, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      border-color: #6f9eff;
+      box-shadow: 0 0 30px #2f6eff;
+    }
+
+    .contact-card i {
+      font-size: 2.2rem;
+      color: #aac9ff;
+      text-shadow: 0 0 15px #3f7bff;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #96b2ff;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+      word-break: break-word;
+    }
+
+    .contact-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    /* footer */
+    .footer {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem;
+      color: #8da2cc;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        min-height: auto;
+      }
+      .hero-left {
+        padding-right: 0;
+      }
+      .freelance-status {
+        justify-content: center;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-image {
+        order: -1;
+      }
+      .profile-frame {
+        width: 260px;
+        height: 260px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+      .logo {
+        font-size: 1.5rem;
+      }
+      .container {
+        padding: 1rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">M.YUSUF</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- HERO with real profile photo (replace src with your image) -->
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h1 class="hero-name">Mohammad Yusuf</h1>
+        <p class="hero-title">Web Developer</p>
+        <p class="hero-tagline">Turning ideas into modern websites</p>
+        <a href="#projects" class="btn-glow">View Projects</a>
+        <div class="freelance-status">
+          <i class="fas fa-circle"></i> Available for freelance work
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="profile-frame">
+          <!-- REPLACE 'profile.jpg' WITH YOUR ACTUAL PROFILE PHOTO -->
+          <img src="mmm.png" alt="Mohammad Yusuf">
+          <!-- pravatar is a placeholder; replace with your own image -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (unchanged) -->
+    <section id="about">
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="about-frame">
+            <div class="about-image-placeholder">
+              <i class="fas fa-code"></i>
+            </div>
+          </div>
+        </div>
+        <div class="about-text glass-card">
+          I'm a web developer specializing in building responsive, performant, and visually polished websites. With a keen eye for detail and a passion for clean code, I transform ideas into digital experiences that feel both modern and effortless. Focused on user‑centric design and the latest web technologies.
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS (unchanged) -->
+    <section id="skills">
+      <h2 class="section-header">Skills</h2>
+      <div class="skills-grid">
+        <span class="skill-item">HTML5</span>
+        <span class="skill-item">CSS3</span>
+        <span class="skill-item">JavaScript</span>
+        <span class="skill-item">Responsive Design</span>
+        <span class="skill-item">UI Design</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS (unchanged) -->
+    <section id="projects">
+      <h2 class="section-header">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card glass-card">
+          <h3>Nova Landing</h3>
+          <p>Modern, animated landing page for a tech startup – built with HTML, CSS, and subtle JavaScript interactions.</p>
+        </div>
+        <div class="project-card glass-card">
+          <h3>TaskFlow</h3>
+          <p>Minimalist task management app with local storage and clean UI. Fully responsive and accessible.</p>
+        </div>
+        <div class="project-card glass-card">
+          <h3>Portfolio 2025</h3>
+          <p>Dark themed personal portfolio with glassmorphism and smooth scroll (the one you're viewing!).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (unchanged) -->
+    <section id="services">
+      <h2 class="section-header">Services</h2>
+      <div class="services-grid">
+        <div class="service-card glass-card">
+          <i class="fas fa-laptop-code"></i>
+          <h4>Website Design</h4>
+          <p>Custom, responsive designs tailored to your brand.</p>
+        </div>
+        <div class="service-card glass-card">
+          <i class="fas fa-meteor"></i>
+          <h4>Landing Pages</h4>
+          <p>High-converting, modern landing pages with speed.</p>
+        </div>
+        <div class="service-card glass-card">
+          <i class="fas fa-pen-fancy"></i>
+          <h4>Fix & Edits</h4>
+          <p>Quick fixes, updates, and performance improvements.</p>
+        </div>
+        <div class="service-card glass-card">
+          <i class="fas fa-paint-brush"></i>
+          <h4>UI Improvements</h4>
+          <p>Refine interfaces for better user experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPDATED CONTACT SECTION with LinkedIn, Email, Status -->
+    <section id="contact">
+      <h2 class="section-header">Contact</h2>
+      <div class="contact-grid">
+        <!-- LinkedIn -->
+        <div class="contact-card glass-card">
+          <i class="fab fa-linkedin"></i>
+          <div class="contact-info">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">MO YUSUF</span>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="contact-card glass-card">
+          <i class="fas fa-envelope"></i>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">moyusufansari57@gmail.com</span>
+          </div>
+        </div>
+        <!-- Status -->
+        <div class="contact-card glass-card">
+          <i class="fas fa-circle" style="color: #4cd964; font-size: 1.5rem;"></i>
+          <div class="contact-info">
+            <span class="contact-label">Status</span>
+            <span class="contact-value">Available for freelance work</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-action">
+        <a href="#contact" class="btn-glow">Send message</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Mohammad Yusuf — futuristic minimalism</p>
+  </footer>
+
+  <!-- script.js (scroll reveal + active nav) -->
+  <script>
+    (function() {
+      const sections = document.querySelectorAll('section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+
+      sections.forEach(section => observer.observe(section));
+
+      // active nav highlight
+      const navLinks = document.querySelectorAll('.nav-links a');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.style.textShadow = '0 0 8px #8098ff';
+          } else {
+            link.style.textShadow = 'none';
+          }
+        });
+      });
+
+      // smooth scroll for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
